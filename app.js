@@ -6,11 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser =require('body-parser');
 var logger = require('morgan');
 var expressHbs = require('express-handlebars');
-
+var mongoose =require('mongoose');
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 
 var app = express();
+
+
+//had to use the below connection function for mongoose. it is diff from the video (to avoid error).
+mongoose.connect('mongodb://localhost:27017/shopping', {useNewUrlParser: true ,useUnifiedTopology: true});
 
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
