@@ -3,7 +3,7 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a class="navbar-brand" href="">Site name</a> </div>
+      <a class="navbar-brand" href="/">Site name</a> </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class=""> <a href="/nl/" class="home" > <i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
@@ -11,10 +11,18 @@
         <li class="dropdown"> <a href="javascript:void(0)" class="services dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="false">
           <i class="fa fa-user" aria-hidden="true"></i> User Management <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
+            {{# if login}}
             <li><a href="#">Webdesign</a></li>
             <li><a href="#">SEO</a></li>
             <li><a href="#">Internet marketing</a></li>
             <li><a href="#">Hosting diensen</a></li>
+              <li><a href="/user/profile">User Account</a></li>
+                <li><a href="/user/logout">Logout</a></li>
+{{else}}
+              <li><a href="/user/signup">Sign Up</a></li>
+                <li><a href="/user/signin">Sign In</a></li>
+{{/if}}
+
           </ul>
         </li>
 

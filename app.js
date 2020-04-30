@@ -12,6 +12,7 @@ var passport=require('passport');
 var flash =require('connect-flash');
 var indexRouter = require('./routes/index.js');
 var validator=require('express-validator');
+var userRoutes = require('./routes/user.js');
 //var usersRouter = require('./routes/users');
 
 var app = express();
@@ -40,6 +41,12 @@ app.use(passport.initialize());
 app.use(passport.session());//can google passport strategies for more info.
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next){
+  res.locals.login = req.isAuthenticated();
+  next();
+});
+
+app.use('/user',userRoutes);
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 
