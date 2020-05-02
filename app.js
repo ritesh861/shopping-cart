@@ -12,6 +12,7 @@ var passport=require('passport');
 var flash =require('connect-flash');
 var indexRouter = require('./routes/index.js');
 var validator=require('express-validator');
+var MongoStore = require('connect-mongo')(session);
 var userRoutes = require('./routes/user.js');
 //var usersRouter = require('./routes/users');
 
@@ -35,7 +36,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(validator());
 
 app.use(cookieParser());
-app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: false}));
+
+app.use(session({
+  secret: 'mysupersecret',
+   resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection}),
+    cookie: {maxAge: 180*60*1000    }
+  }));
+
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());//can google passport strategies for more info.
@@ -43,6 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next){
   res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
   next();
 });
 
