@@ -7,7 +7,14 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class=""> <a href="/nl/" class="home" > <i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-        <li class=""> <a href="/nl/about" class="about"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart</a></li>
+
+
+        <li class=""> <a href="/shopping-cart/" class="about"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart
+
+          <span class="badge">{{session.cart.totalQty}}</span>
+        </a>
+      </li>
+
         <li class="dropdown"> <a href="javascript:void(0)" class="services dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="false">
           <i class="fa fa-user" aria-hidden="true"></i> User Management <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
